@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using unvestor.Dto;
@@ -27,6 +28,20 @@ namespace unvestor.Controllers
             p.BuyStock("KNTR", 2);
             pr.Save();
             //World.Update();
+        }
+
+        [HttpPost("buy")]
+        public void Buy(BuyStockDto req)
+        {
+            var player = pr.Player();
+            player.BuyStock(req.ticker, req.count);
+            pr.Save();
+        }
+
+        [HttpGet("player")]
+        public IInvestor PlayerInfo()
+        {
+            return pr.Player();
         }
     }
 }
