@@ -1,0 +1,47 @@
+[
+  {
+    "Title": "Apple",
+    "Ticker": "AAPL",
+    "StockPrice": 500,
+    "Safety": 10,
+    "StockPriceHistory": [
+      500
+    ]
+  },
+  {
+    "Title": "Google",
+    "Ticker": "GOOG",
+    "StockPrice": 250,
+    "Safety": 8,
+    "StockPriceHistory": [
+      250
+    ]
+  },
+  {
+    "Title": "Amazon",
+    "Ticker": "AMAZ",
+    "StockPrice": 1200,
+    "Safety": 9,
+    "StockPriceHistory": [
+      1200
+    ]
+  },
+  {
+    "Title": "Tesla",
+    "Ticker": "TESL",
+    "StockPrice": 900,
+    "Safety": 6,
+    "StockPriceHistory": [
+      900
+    ]
+  },
+  {
+    "Title": "Kontur",
+    "Ticker": "KNTR",
+    "StockPrice": 200,
+    "Safety": 7,
+    "StockPriceHistory": [
+      200
+    ]
+  }
+]

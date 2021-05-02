@@ -1,0 +1,36 @@
+{
+  "Id": 1,
+  "Cash": 200,
+  "Portfolio": {
+    "Stocks": {
+      "AAPL":
+      [
+        {
+          "CompanyTitle": "Apple",
+          "CompanyTicker": "AAPL",
+          "OriginPrice": 300,
+          "PurchaseTime": 1,
+          "OwnerId": 1
+        },
+        {
+          "CompanyTitle": "Apple",
+          "CompanyTicker": "AAPL",
+          "OriginPrice": 298,
+          "PurchaseTime": 2,
+          "OwnerId": 1
+        }
+      ],
+      "GOOG":
+      [
+        {
+          "CompanyTitle": "Google",
+          "CompanyTicker": "GOOG",
+          "OriginPrice": 150,
+          "PurchaseTime": 2,
+          "OwnerId": 1
+        }
+      ]
+    },
+    "OriginPrice": 748
+  }
+}
