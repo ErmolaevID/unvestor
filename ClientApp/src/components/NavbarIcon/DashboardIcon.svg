@@ -1,0 +1,19 @@
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Dashboard icon</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.113725 0 0 0 0 0.113725 0 0 0 0 0.113725 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dashboard" transform="translate(-66.000000, -240.000000)">
+            <g id="Dashboard-icon" transform="translate(66.000000, 240.000000)" filter="url(#filter-1)">
+                <g>
+                    <circle id="Oval" stroke="#1D1D1D" stroke-width="2" cx="25" cy="7" r="6"></circle>
+                    <rect id="Rectangle" stroke="#1D1D1D" stroke-width="2" x="1" y="1" width="12" height="30" rx="3"></rect>
+                    <path d="M25,20.236068 L30.3315007,30.8990694 L19.7319462,30.998883 L25,20.236068 Z" id="Triangle" stroke="#1D1D1D" stroke-width="2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
