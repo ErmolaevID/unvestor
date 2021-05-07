@@ -20,6 +20,9 @@ namespace unvestor.Controllers
         [HttpPost("update")]
         public void UpdateStockPrices() => World.Update();
 
+        [HttpGet("{companyTicker}")]
+        public ICompany CompanyByTicker(string companyTicker) => cr.CompanyByTicker(companyTicker);
+
         [HttpGet("test")]
         public void Get()
         {
