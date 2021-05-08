@@ -3,7 +3,7 @@ import { CompanyDto } from "../common/Company.dto";
 import { CompanyList } from "../components/CompanyList/CompanyList";
 import { Loader } from "../components/Loader/Loader";
 import { useHttp } from "../hooks/http.hook";
-import { Wrapper } from "../styles/Companies.styles";
+import { Content, Wrapper } from "../styles/Companies.styles";
 
 export const Companies = () => {
   const req = useHttp();
@@ -24,7 +24,7 @@ export const Companies = () => {
       {loading ? (
         <Loader />
       ) : (
-        <>
+        <Content>
           {data?.map((e) => (
             <CompanyList
               title={e.title}
@@ -32,7 +32,7 @@ export const Companies = () => {
               ticker={e.ticker}
             />
           ))}
-        </>
+        </Content>
       )}
     </Wrapper>
   );

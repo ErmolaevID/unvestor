@@ -10,3 +10,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   background-color: #E7F3FD;
 `;
+
+export const Content = styled.div`
+  margin-top: calc(70vh * ${wHD});
+`;
