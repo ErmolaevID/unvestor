@@ -6,6 +6,5 @@ namespace unvestor.Dto
         public string CompanyTicker { get; set; }
         public int OriginPrice { get; set; }
         public int PurchaseTime { get; set; }
-        public int OwnerId { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Id": 1,
-  "Cash": 200,
+  "Cash": 500,
   "Portfolio": {
     "Stocks": {}, 
     "OriginPrice":0

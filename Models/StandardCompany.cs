@@ -48,8 +48,12 @@ namespace unvestor.Models
             StockPrice += n;
         }
 
-        public List<IStock> Sell(int count)
+        public List<IStock> Sell(int count, IInvestor buyer)
         {
+            if (!(buyer.Cash >= stockPrice * count))
+                throw new Exception("Not enough money");
+            buyer.Cash -= stockPrice * count;
+            buyer.Portfolio.OriginPrice += stockPrice * count;
             return stockProducer.CreateStocks(stockPrice, count);
         }
     }

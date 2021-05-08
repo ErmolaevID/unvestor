@@ -41,6 +41,14 @@ namespace unvestor.Controllers
             pr.Save();
         }
 
+        [HttpPost("sale")]
+        public void Sale(BuyStockDto req)
+        {
+            var player = pr.Player();
+            player.SaleStock(req.ticker, req.count);
+            pr.Save();
+        }
+
         [HttpGet("player")]
         public IInvestor PlayerInfo()
         {

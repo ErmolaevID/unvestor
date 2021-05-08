@@ -5,6 +5,6 @@ namespace unvestor.Models
     public interface IPortfolio
     {
         Dictionary<string, List<IStock>> Stocks { get; }
-        int OriginPrice { get; }
+        int OriginPrice { get; set; }
     }
 }

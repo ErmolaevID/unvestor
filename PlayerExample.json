@@ -10,14 +10,12 @@
           "CompanyTicker": "AAPL",
           "OriginPrice": 300,
           "PurchaseTime": 1,
-          "OwnerId": 1
         },
         {
           "CompanyTitle": "Apple",
           "CompanyTicker": "AAPL",
           "OriginPrice": 298,
           "PurchaseTime": 2,
-          "OwnerId": 1
         }
       ],
       "GOOG":
@@ -27,7 +25,6 @@
           "CompanyTicker": "GOOG",
           "OriginPrice": 150,
           "PurchaseTime": 2,
-          "OwnerId": 1
         }
       ]
     },

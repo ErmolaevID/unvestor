@@ -10,6 +10,6 @@ namespace unvestor.Models
         int Safety { get; }
         List<int> StockPriceHistory { get; }
         void UpdateStockPrice();
-        List<IStock> Sell(int count);
+        List<IStock> Sell(int count, IInvestor buyer);
     }
 }

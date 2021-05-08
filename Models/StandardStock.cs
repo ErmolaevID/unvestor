@@ -6,7 +6,6 @@ namespace unvestor.Models
         public string CompanyTicker { get; }
         public int OriginPrice { get; }
         public int PurchaseTime { get; }
-        public int OwnerId { get; }
 
         public StandardStock(
             string companyTitle, 
@@ -21,18 +20,15 @@ namespace unvestor.Models
         }
 
         public StandardStock(
-            string companyTitle,
-            string companyTicker,
-            int price,
-            int purchaseTime,
-            int ownerId)
+            string companyTitle, 
+            string companyTicker, 
+            int price, 
+            int purchaseTime)
         {
-            // Основной констркутор 
             CompanyTitle = companyTitle;
             CompanyTicker = companyTicker;
             OriginPrice = price;
             PurchaseTime = purchaseTime;
-            OwnerId = ownerId;
         }
     }
 }

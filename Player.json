@@ -1,1 +1,8 @@
-{"Id":1,"Cash":200,"Portfolio":{"Stocks":{"AAPL":[{"CompanyTitle":"Apple","CompanyTicker":"AAPL","OriginPrice":498,"PurchaseTime":1,"OwnerId":0},{"CompanyTitle":"Apple","CompanyTicker":"AAPL","OriginPrice":497,"PurchaseTime":2,"OwnerId":0}],"KNTR":[{"CompanyTitle":"Kontur","CompanyTicker":"KNTR","OriginPrice":180,"PurchaseTime":1,"OwnerId":0},{"CompanyTitle":"Kontur","CompanyTicker":"KNTR","OriginPrice":180,"PurchaseTime":1,"OwnerId":0},{"CompanyTitle":"Kontur","CompanyTicker":"KNTR","OriginPrice":212,"PurchaseTime":2,"OwnerId":0},{"CompanyTitle":"Kontur","CompanyTicker":"KNTR","OriginPrice":212,"PurchaseTime":2,"OwnerId":0}]},"OriginPrice":0}}
+{
+  "Id": 1,
+  "Cash": 500,
+  "Portfolio": {
+    "Stocks": {},
+    "OriginPrice":0
+  }
+}

@@ -16,12 +16,40 @@ export const Company = () => {
       .then((res) => setCompany(res))
       .then((res) => setLoading(false));
   }, []);
+  const handleBuy = (ticker: string, count: number) => {
+    req({
+      url: "/sm/buy",
+      method: "POST",
+      body: {
+        ticker,
+        count,
+      },
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => res);
+  };
+  const handleSale = (ticker: string, count: number) => {
+    req({
+      url: "/sm/sale",
+      method: "POST",
+      body: {
+        ticker,
+        count,
+      },
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => res);
+  };
+
   return loading ? (
     <>Loading</>
   ) : (
     <div>
-      <div>{company?.title}</div>
       <StockChartCard data={company as CompanyDto} />
+      <button onClick={() => handleBuy(company?.ticker as string, 1)}>Buy</button>
+      <button onClick={() => handleSale(company?.ticker as string, 1)}>Sale</button>
     </div>
   );
 };

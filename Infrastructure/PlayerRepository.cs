@@ -35,8 +35,7 @@ namespace unvestor.Infrastructure
                             l.CompanyTitle, 
                             l.CompanyTicker, 
                             l.OriginPrice, 
-                            l.PurchaseTime, 
-                            l.OwnerId))
+                            l.PurchaseTime))
                     .Cast<IStock>()
                     .ToList();
                 portfolio.Add(ticker, stock);

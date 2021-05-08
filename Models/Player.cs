@@ -1,3 +1,4 @@
+using System;
 using unvestor.Infrastructure;
 
 namespace unvestor.Models
@@ -5,7 +6,7 @@ namespace unvestor.Models
     public class Player : IInvestor
     {
         public int Id { get; }
-        public int Cash { get; }
+        public int Cash { get; set; }
         public IPortfolio Portfolio { get; }
         private readonly CompanyRepository cr = new CompanyRepository();
 
@@ -24,7 +25,7 @@ namespace unvestor.Models
             var stocks = 
                 cr.
                     CompanyByTicker(companyTicker)
-                    .Sell(count);
+                    .Sell(count, this);
             if (Portfolio.Stocks.ContainsKey(stocks[0].CompanyTicker))
             {
                 foreach (var stock in stocks)
@@ -33,7 +34,23 @@ namespace unvestor.Models
             }
             Portfolio.Stocks.Add(companyTicker, stocks);
         }
-        
-        
+
+        public void SaleStock(string companyTicker, int count)
+        {
+            if (Portfolio.Stocks.ContainsKey(companyTicker))
+            {
+                var c = Portfolio.Stocks[companyTicker].Count;
+                if (c < count)
+                {
+                    throw new Exception("Not enough stocks");
+                }
+                Portfolio.Stocks[companyTicker].RemoveRange(0, count);
+                var currentPrice = cr.CompanyByTicker(companyTicker).StockPrice;
+                Cash += currentPrice * count;
+                return;
+            }
+
+            throw new Exception("You dont have stocks");
+        }
     }
 }

@@ -1,1 +1,47 @@
-[{"Title":"Apple","Ticker":"AAPL","StockPrice":485,"Safety":10,"StockPriceHistory":[500,499,504,507,500,493,488,485,485,492,494,486,478,469,465,464,468,469,477,485,492,495,490,498,504,512,503,502,502,499,492,497,489,485]},{"Title":"Google","Ticker":"GOOG","StockPrice":349,"Safety":8,"StockPriceHistory":[250,277,286,286,310,286,295,280,271,247,247,220,196,202,223,232,253,247,241,268,253,262,289,301,322,349,373,349,367,388,373,367,361,349]},{"Title":"Amazon","Ticker":"AMAZ","StockPrice":1336,"Safety":9,"StockPriceHistory":[1200,1198,1210,1212,1226,1216,1216,1206,1198,1210,1208,1204,1218,1236,1238,1238,1254,1242,1260,1260,1242,1244,1258,1248,1252,1270,1260,1268,1284,1290,1306,1318,1332,1336]},{"Title":"Tesla","Ticker":"TESL","StockPrice":1200,"Safety":6,"StockPriceHistory":[900,940,915,935,890,890,910,940,975,1020,1050,1070,1085,1075,1040,1030,985,1020,1055,1045,1035,1055,1045,1075,1115,1150,1115,1145,1140,1155,1155,1160,1165,1200]},{"Title":"Kontur","Ticker":"KNTR","StockPrice":168,"Safety":7,"StockPriceHistory":[200,172,140,152,140,136,100,88,108,88,92,68,80,80,116,120,100,76,52,48,52,64,52,72,76,72,88,116,132,164,172,148,148,168]}]
+[
+  {
+    "Title": "Apple",
+    "Ticker": "AAPL",
+    "StockPrice": 500,
+    "Safety": 10,
+    "StockPriceHistory": [
+      500
+    ]
+  },
+  {
+    "Title": "Google",
+    "Ticker": "GOOG",
+    "StockPrice": 250,
+    "Safety": 8,
+    "StockPriceHistory": [
+      250
+    ]
+  },
+  {
+    "Title": "Amazon",
+    "Ticker": "AMAZ",
+    "StockPrice": 1200,
+    "Safety": 9,
+    "StockPriceHistory": [
+      1200
+    ]
+  },
+  {
+    "Title": "Tesla",
+    "Ticker": "TESL",
+    "StockPrice": 900,
+    "Safety": 6,
+    "StockPriceHistory": [
+      900
+    ]
+  },
+  {
+    "Title": "Kontur",
+    "Ticker": "KNTR",
+    "StockPrice": 200,
+    "Safety": 7,
+    "StockPriceHistory": [
+      200
+    ]
+  }
+]

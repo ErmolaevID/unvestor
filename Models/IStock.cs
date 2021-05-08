@@ -6,6 +6,5 @@ namespace unvestor.Models
         string CompanyTicker { get; }
         int OriginPrice { get; }
         int PurchaseTime { get; }
-        int OwnerId { get; }
     }
 }
