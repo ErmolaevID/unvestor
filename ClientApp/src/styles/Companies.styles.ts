@@ -8,4 +8,5 @@ export const Wrapper = styled.div`
   width: calc(1140vw * ${wHD});
   flex-direction: column;
   justify-content: center;
+  background-color: #E7F3FD;
 `;
