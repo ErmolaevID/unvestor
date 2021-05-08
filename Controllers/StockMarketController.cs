@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using unvestor.Dto;
@@ -21,38 +20,24 @@ namespace unvestor.Controllers
         public void UpdateStockPrices() => World.Update();
 
         [HttpGet("{companyTicker}")]
-        public ICompany CompanyByTicker(string companyTicker) => cr.CompanyByTicker(companyTicker);
-
-        [HttpGet("test")]
-        public void Get()
-        {
-            var p = pr.Player();
-            p.BuyStock("AAPL", 1);
-            p.BuyStock("KNTR", 2);
-            pr.Save();
-            //World.Update();
-        }
+        public ICompany CompanyByTicker(string companyTicker) => 
+            cr.CompanyByTicker(companyTicker);
 
         [HttpPost("buy")]
         public void Buy(BuyStockDto req)
         {
-            var player = pr.Player();
-            player.BuyStock(req.ticker, req.count);
+            pr.Player().BuyStock(req.ticker, req.count);
             pr.Save();
         }
 
         [HttpPost("sale")]
         public void Sale(BuyStockDto req)
         {
-            var player = pr.Player();
-            player.SaleStock(req.ticker, req.count);
+            pr.Player().SaleStock(req.ticker, req.count);
             pr.Save();
         }
 
         [HttpGet("player")]
-        public IInvestor PlayerInfo()
-        {
-            return pr.Player();
-        }
+        public IInvestor PlayerInfo() => pr.Player();
     }
 }
