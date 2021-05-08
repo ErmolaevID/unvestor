@@ -43,5 +43,41 @@
     "StockPriceHistory": [
       200
     ]
+  },
+  {
+    "Title": "Adobe",
+    "Ticker": "ADBE",
+    "StockPrice": 250,
+    "Safety": 5,
+    "StockPriceHistory": [
+      250
+    ]
+  },
+  {
+    "Title": "Yandex",
+    "Ticker": "YAAN",
+    "StockPrice": 100,
+    "Safety": 4,
+    "StockPriceHistory": [
+      100
+    ]
+  },
+  {
+    "Title": "Microsoft",
+    "Ticker": "MICR",
+    "StockPrice": 1500,
+    "Safety": 7,
+    "StockPriceHistory": [
+      1500
+    ]
+  },
+  {
+    "Title": "JetBrains",
+    "Ticker": "JEBR",
+    "StockPrice": 1300,
+    "Safety": 6,
+    "StockPriceHistory": [
+      1300
+    ]
   }
 ]
