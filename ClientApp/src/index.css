@@ -5,8 +5,5 @@ body {
 }
 
 #root {
-  max-width: 1440px;
-  min-width: 1440px;
-  margin: auto;
   display: flex;
 }
