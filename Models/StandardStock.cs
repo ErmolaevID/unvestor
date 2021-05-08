@@ -10,14 +10,12 @@ namespace unvestor.Models
         public StandardStock(
             string companyTitle, 
             string companyTicker, 
-            int price)
-        {
-            // TODO: Использовать здесь основной констркутор 
-            CompanyTitle = companyTitle;
-            CompanyTicker = companyTicker;
-            OriginPrice = price;
-            PurchaseTime = World.Time;
-        }
+            int price) : 
+            this(
+                companyTitle, 
+                companyTicker, 
+                price, 
+                World.Time) {}
 
         public StandardStock(
             string companyTitle, 
