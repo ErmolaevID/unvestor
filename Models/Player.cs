@@ -37,20 +37,13 @@ namespace unvestor.Models
 
         public void SaleStock(string companyTicker, int count)
         {
-            if (Portfolio.Stocks.ContainsKey(companyTicker))
-            {
-                var c = Portfolio.Stocks[companyTicker].Count;
-                if (c < count)
-                {
-                    throw new Exception("Not enough stocks");
-                }
-                Portfolio.Stocks[companyTicker].RemoveRange(0, count);
-                var currentPrice = cr.CompanyByTicker(companyTicker).StockPrice;
-                Cash += currentPrice * count;
-                return;
-            }
-
-            throw new Exception("You dont have stocks");
+            if (!Portfolio.Stocks.ContainsKey(companyTicker)) 
+                throw new Exception("You dont have stocks");
+            if (Portfolio.Stocks[companyTicker].Count < count)
+                throw new Exception("Not enough stocks");
+            Portfolio.Stocks[companyTicker].RemoveRange(0, count);
+            var currentPrice = cr.CompanyByTicker(companyTicker).StockPrice;
+            Cash += currentPrice * count;
         }
     }
 }
