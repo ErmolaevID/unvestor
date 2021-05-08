@@ -31,7 +31,7 @@ namespace unvestor.Controllers
         }
 
         [HttpPost("sale")]
-        public void Sale(BuyStockDto req)
+        public void Sale(SaleStockDto req)
         {
             pr.Player().SaleStock(req.ticker, req.count);
             pr.Save();
