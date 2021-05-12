@@ -8,6 +8,7 @@ namespace unvestor.Models
         string Ticker { get; } 
         int StockPrice { get; }
         int Safety { get; }
+        bool IsBankrupt { get; }
         List<int> StockPriceHistory { get; }
         void UpdateStockPrice();
         List<IStock> Sell(int count, IInvestor buyer);

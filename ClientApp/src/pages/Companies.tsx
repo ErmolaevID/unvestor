@@ -27,9 +27,10 @@ export const Companies = () => {
         <Content>
           {data?.map((e) => (
             <CompanyList
-              title={e.title}
-              price={e.stockPrice}
-              ticker={e.ticker}
+              left={e.title}
+              middle={e.stockPrice}
+              right={e.ticker}
+              link={e.ticker}
             />
           ))}
         </Content>

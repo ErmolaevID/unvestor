@@ -21,7 +21,7 @@ export const Navabar: React.FC = ({ children }) => {
         <NavLink to="/companies" style={{ textDecoration: "none" }}>
           <NavbarElement>Companies</NavbarElement>
         </NavLink>
-        <NavLink to="/achievement" style={{ textDecoration: "none" }}>
+        <NavLink to="/achievements" style={{ textDecoration: "none" }}>
           <NavbarElement>Achievement</NavbarElement>
         </NavLink>
       </Wrapper>

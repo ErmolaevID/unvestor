@@ -20,9 +20,10 @@ namespace unvestor.Infrastructure
 
         public IInvestor Player() => player;
 
-        public void Save() =>
+        public void Save()
+        {
             json.Write(player, "Player.json");
-        
+        }
 
         private void ParseDto(PlayerDto dto)
         {

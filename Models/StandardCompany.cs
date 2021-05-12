@@ -19,6 +19,7 @@ namespace unvestor.Models
             }
         }
         public int Safety { get; }
+        public bool IsBankrupt { get; private set; }
         public List<int> StockPriceHistory { get; }
         private readonly Random rnd = new Random();
 
@@ -35,14 +36,23 @@ namespace unvestor.Models
             Safety = safety < 11 ? safety : 4;
             StockPriceHistory = stockPriceHistory;
             stockProducer = new StockProducer(title, ticker);
+            IsBankrupt = false;
         }
         
         public void UpdateStockPrice()
         {
+            if (IsBankrupt)
+                return;
             var n = rnd.Next(0, 10) * (11 - Safety);
             if (rnd.Next(0, 2) == 0)
             {
-                StockPrice -= n;
+                var d = StockPrice - n;
+                if (d < 1)
+                {
+                    (IsBankrupt, StockPrice) = (true, 0);
+                    return;
+                }
+                StockPrice -= n;   
                 return;
             }
             StockPrice += n;

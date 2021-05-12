@@ -30,7 +30,8 @@ namespace unvestor.Infrastructure
                             company.Ticker,
                             company.StockPrice,
                             company.Safety,
-                            company.StockPriceHistory))
+                            company.StockPriceHistory,
+                            company.IsBankrupt))
                     .ToList(),
                 "Companies.json");
 
