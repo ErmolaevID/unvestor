@@ -6,6 +6,7 @@ namespace unvestor.Models
     public class AchievementLogger
     {
         private readonly AchievementRepository ar = new AchievementRepository();
+        
         public void Log(int id, IInvestor player)
         {
             var ach = ar.All();

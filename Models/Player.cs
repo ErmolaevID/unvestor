@@ -8,16 +8,24 @@ namespace unvestor.Models
         public int Id { get; }
         public int Cash { get; set; }
         public IPortfolio Portfolio { get; }
-        private readonly CompanyRepository cr = new CompanyRepository();
+        private readonly ICompanyRepository cr;
 
         public Player(
             int id,
             int cash,
-            IPortfolio portfolio)
+            IPortfolio portfolio):
+            this(id, cash, portfolio, new CompanyRepository()) {}
+
+        public Player(
+            int id,
+            int cash,
+            IPortfolio portfolio,
+            ICompanyRepository companyRepository)
         {
             Id = id;
             Cash = cash;
             Portfolio = portfolio;
+            cr = companyRepository;
         }
 
         public void BuyStock(string companyTicker, int count)

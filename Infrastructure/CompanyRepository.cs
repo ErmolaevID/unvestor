@@ -5,7 +5,7 @@ using unvestor.Models;
 
 namespace unvestor.Infrastructure
 {
-    public class CompanyRepository
+    public class CompanyRepository : ICompanyRepository
     {
         private readonly List<ICompany> list;
         private readonly IJSON json;
