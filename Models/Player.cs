@@ -35,7 +35,7 @@ namespace unvestor.Models
             Portfolio.Stocks.Add(companyTicker, stocks);
         }
 
-        public void SaleStock(string companyTicker, int count)
+        public void SellStock(string companyTicker, int count)
         {
             if (!Portfolio.Stocks.ContainsKey(companyTicker)) 
                 throw new Exception("You dont have stocks");

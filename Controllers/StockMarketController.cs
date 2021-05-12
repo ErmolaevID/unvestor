@@ -33,11 +33,10 @@ namespace unvestor.Controllers
             pr.Save();
         }
 
-        [HttpPost("sale")]
-        // TODO: Rename to sell
-        public void Sale(SaleStockDto req)
+        [HttpPost("sell")]
+        public void Sell(SellStockDto req)
         {
-            pr.Player().SaleStock(req.ticker, req.count);
+            pr.Player().SellStock(req.ticker, req.count);
             al.Log(2, null);
             pr.Save();
         }

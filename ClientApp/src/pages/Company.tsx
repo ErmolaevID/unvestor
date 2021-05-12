@@ -32,7 +32,7 @@ export const Company: React.FC = () => {
     });
   }, []);
 
-  const handleClick = (ticker: string, count: number, type: "buy" | "sale") => {
+  const handleClick = (ticker: string, count: number, type: "buy" | "sell") => {
     req({
       url: `/sm/${type}`,
       method: "POST",
@@ -80,7 +80,7 @@ export const Company: React.FC = () => {
             Buy
           </BuyButton>
           <SellButton
-            onClick={() => handleClick(company?.ticker as string, counter, "sale")}
+            onClick={() => handleClick(company?.ticker as string, counter, "sell")}
           >
             Sell
           </SellButton>
