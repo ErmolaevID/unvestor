@@ -9,7 +9,7 @@ namespace unvestor.Controllers
     [Route("ach")]
     public class AchievementsController
     {
-        private readonly AchievementRepository ar = new AchievementRepository();
+        private readonly IAchievementRepository ar = new AchievementRepository();
 
         [HttpGet("achievements")]
         public List<IAchievement> AllAchievements() => ar.All();

@@ -10,8 +10,8 @@ namespace unvestor.Controllers
     [Route("sm")]
     public class StockMarketController : ControllerBase
     {
-        private readonly CompanyRepository cr = new CompanyRepository();
-        private readonly PlayerRepository pr = new PlayerRepository();
+        private readonly ICompanyRepository cr = new CompanyRepository();
+        private readonly IPlayerRepository pr = new PlayerRepository();
         private readonly AchievementLogger al = new AchievementLogger();
 
         [HttpGet("companies")]

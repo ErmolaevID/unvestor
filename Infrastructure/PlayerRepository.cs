@@ -5,7 +5,7 @@ using unvestor.Models;
 
 namespace unvestor.Infrastructure
 {
-    public class PlayerRepository
+    public class PlayerRepository : IPlayerRepository
     {
         private IInvestor player;
         private readonly IJSON json;

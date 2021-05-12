@@ -5,7 +5,7 @@ using unvestor.Models;
 
 namespace unvestor.Infrastructure
 {
-    public class AchievementRepository
+    public class AchievementRepository : IAchievementRepository
     {
         private readonly List<IAchievement> achievements;
         private readonly IJSON json;
