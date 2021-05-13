@@ -1,14 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { NavbarElement, Wrapper } from "./Navbar.styles";
-// import { AppIcon } from "../Icons/AppIcon";
-// import { CompaniesIcon } from "../Icons/CompaniesIcon";
-// import { DashboardIcon } from "../Icons/DashboardIcon";
-// import { InvestorsIcon } from "../Icons/InvestorsIcon";
-// import { PortfolioIcon } from "../Icons/PortfolioIcon";
-// import { Menu, Wrapper } from "./Navbar.Styles";
 
-export const Navabar: React.FC = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+  cash: number;
+}
+
+export const Navabar: React.FC<Props> = ({ children, cash }) => {
   return (
     <>
       <Wrapper>
@@ -23,6 +22,9 @@ export const Navabar: React.FC = ({ children }) => {
         </NavLink>
         <NavLink to="/achievements" style={{ textDecoration: "none" }}>
           <NavbarElement>Achievement</NavbarElement>
+        </NavLink>
+        <NavLink to="/portfolio" style={{ textDecoration: "none" }}>
+          <NavbarElement>Cash: ${cash}</NavbarElement>
         </NavLink>
       </Wrapper>
       {children}
