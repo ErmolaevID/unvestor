@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using unvestor.Dto;
 using unvestor.Infrastructure;
 using unvestor.Models;
+using unvestor.Services;
 
 namespace unvestor.Controllers
 {
@@ -10,8 +11,8 @@ namespace unvestor.Controllers
     [Route("sm")]
     public class StockMarketController : ControllerBase
     {
+        private readonly PlayerService playerService = new PlayerService();
         private readonly ICompanyRepository cr = new CompanyRepository();
-        private readonly IPlayerRepository pr = new PlayerRepository();
         private readonly AchievementLogger al = new AchievementLogger();
 
         [HttpGet("companies")]
@@ -25,30 +26,12 @@ namespace unvestor.Controllers
             cr.CompanyByTicker(companyTicker);
 
         [HttpPost("buy")]
-        public void Buy(BuyStockDto req)
-        {
-            var player = pr.Player();
-            player.BuyStock(req.ticker, req.count);
-            al.Log(1, player);
-            pr.Save();
-        }
+        public void Buy(BuyStockDto req) => playerService.Buy(req.ticker, req.count);
 
         [HttpPost("sell")]
-        public void Sell(SellStockDto req)
-        {
-            pr.Player().SellStock(req.ticker, req.count);
-            al.Log(2, null);
-            pr.Save();
-        }
+        public void Sell(SellStockDto req) => playerService.Sell(req.ticker, req.count);
 
         [HttpGet("player")]
-        public IInvestor PlayerInfo() => pr.Player();
-
-        [HttpGet("test")]
-        public List<IAchievement> Test()
-        {
-            var r = new AchievementRepository();
-            return r.All();
-        }
+        public IInvestor PlayerInfo() => playerService.PlayerInfo();
     }
 }
