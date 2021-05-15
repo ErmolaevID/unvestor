@@ -3,7 +3,7 @@ using unvestor.Models;
 
 namespace unvestor.Services
 {
-    public class PlayerService
+    public class PlayerService : IPlayerService
     {
         private IPlayerRepository repository;
         private ICompaniesService companiesService;

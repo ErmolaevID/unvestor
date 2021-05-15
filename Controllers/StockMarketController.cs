@@ -11,7 +11,7 @@ namespace unvestor.Controllers
     [Route("sm")]
     public class StockMarketController : ControllerBase
     {
-        private readonly PlayerService playerService = new PlayerService();
+        private readonly IPlayerService playerService = new PlayerService();
         private readonly ICompaniesService companiesService = new CompaniesService();
 
         [HttpGet("companies")]
