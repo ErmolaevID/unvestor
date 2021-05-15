@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using unvestor.Infrastructure;
 using unvestor.Models;
 
@@ -14,6 +15,8 @@ namespace unvestor.Services
             this.repository = repository;
         }
 
+        public List<ICompany> AllCompanies() => repository.All();
+        
         public ICompany CompanyByTicker(string ticker) => repository.CompanyByTicker(ticker);
         
     }
