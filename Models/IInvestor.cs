@@ -7,7 +7,7 @@ namespace unvestor.Models
         int Id { get; }
         int Cash { get; set; }
         IPortfolio Portfolio { get; }
-        void BuyStock(string companyTicker, int count);
-        void SellStock(string companyTicker, int count);
+        void BuyStock(ICompany company, int count);
+        void SellStock(ICompany company, int count);
     }
 }

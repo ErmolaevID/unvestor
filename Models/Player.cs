@@ -1,5 +1,4 @@
 using System;
-using unvestor.Infrastructure;
 
 namespace unvestor.Models
 {
@@ -8,49 +7,37 @@ namespace unvestor.Models
         public int Id { get; }
         public int Cash { get; set; }
         public IPortfolio Portfolio { get; }
-        private readonly ICompanyRepository cr;
-
+        
         public Player(
             int id,
             int cash,
-            IPortfolio portfolio):
-            this(id, cash, portfolio, new CompanyRepository()) {}
-
-        public Player(
-            int id,
-            int cash,
-            IPortfolio portfolio,
-            ICompanyRepository companyRepository)
+            IPortfolio portfolio)
         {
             Id = id;
             Cash = cash;
             Portfolio = portfolio;
-            cr = companyRepository;
         }
 
-        public void BuyStock(string companyTicker, int count)
+        public void BuyStock(ICompany company, int count)
         {
-            var stocks = 
-                cr.
-                    CompanyByTicker(companyTicker)
-                    .Sell(count, this);
+            var stocks = company.Sell(count, this);
             if (Portfolio.Stocks.ContainsKey(stocks[0].CompanyTicker))
             {
                 foreach (var stock in stocks)
-                    Portfolio.Stocks[companyTicker].Add(stock);
+                    Portfolio.Stocks[company.Ticker].Add(stock);
                 return;
             }
-            Portfolio.Stocks.Add(companyTicker, stocks);
+            Portfolio.Stocks.Add(company.Ticker, stocks);
         }
 
-        public void SellStock(string companyTicker, int count)
+        public void SellStock(ICompany company, int count)
         {
-            if (!Portfolio.Stocks.ContainsKey(companyTicker)) 
+            if (!Portfolio.Stocks.ContainsKey(company.Ticker)) 
                 throw new Exception("You dont have stocks");
-            if (Portfolio.Stocks[companyTicker].Count < count)
+            if (Portfolio.Stocks[company.Ticker].Count < count)
                 throw new Exception("Not enough stocks");
-            Portfolio.Stocks[companyTicker].RemoveRange(0, count);
-            var currentPrice = cr.CompanyByTicker(companyTicker).StockPrice;
+            Portfolio.Stocks[company.Ticker].RemoveRange(0, count);
+            var currentPrice = company.StockPrice;
             Cash += currentPrice * count;
         }
     }
