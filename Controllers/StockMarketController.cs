@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using unvestor.Dto;
@@ -13,6 +14,7 @@ namespace unvestor.Controllers
     {
         private readonly IPlayerService playerService = new PlayerService();
         private readonly ICompaniesService companiesService = new CompaniesService();
+        private readonly IRecommendationService recommendationService = new RecommendationService();
 
         [HttpGet("companies")]
         public List<ICompany> AllCompanies() => companiesService.AllCompanies();
@@ -31,5 +33,8 @@ namespace unvestor.Controllers
 
         [HttpGet("player")]
         public IInvestor PlayerInfo() => playerService.PlayerInfo();
+
+        [HttpGet("recommendations")]
+        public List<ICompany> Recommendations() =>  recommendationService.Stocks();
     }
 }
