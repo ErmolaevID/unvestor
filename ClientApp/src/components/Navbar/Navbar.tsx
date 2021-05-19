@@ -23,6 +23,9 @@ export const Navabar: React.FC<Props> = ({ children, cash }) => {
         <NavLink to="/achievements" style={{ textDecoration: "none" }}>
           <NavbarElement>Achievement</NavbarElement>
         </NavLink>
+        <NavLink to="/recommendations" style={{ textDecoration: "none" }}>
+          <NavbarElement>Recommendations</NavbarElement>
+        </NavLink>
         <NavLink to="/portfolio" style={{ textDecoration: "none" }}>
           <NavbarElement>Cash: ${cash}</NavbarElement>
         </NavLink>

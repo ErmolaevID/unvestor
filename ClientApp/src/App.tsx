@@ -9,6 +9,7 @@ import { Companies } from "./pages/Companies";
 import { Company } from "./pages/Company";
 import { Dashboard } from "./pages/Dashboard";
 import { Portfolio } from "./pages/Portfolio";
+import { Recommendations } from "./pages/Recommendations";
 
 export const App: React.FC = () => {
   const req = useHttp();
@@ -28,6 +29,7 @@ export const App: React.FC = () => {
       <Route exact path="/company/:ticker" component={Company} />
       <Route exact path="/portfolio" component={Portfolio} />
       <Route exact path="/achievements" component={Achievements} />
+      <Route exact path="/recommendations" component={Recommendations} />
     </Navabar>
   );
 };
