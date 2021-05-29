@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using unvestor.Models;
 
 namespace unvestor.Services
@@ -5,7 +6,7 @@ namespace unvestor.Services
     public interface IPlayerService
     {
         IInvestor PlayerInfo();
-        void Sell(string ticker, int count);
-        void Buy(string ticker, int count);
+        void Sell(ICompany company, int count);
+        void Buy(ICompany company, int count);
     }
 }

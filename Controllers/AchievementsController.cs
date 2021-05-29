@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using unvestor.Infrastructure;
 using unvestor.Models;
+using unvestor.Services;
 
 namespace unvestor.Controllers
 {
@@ -9,9 +10,9 @@ namespace unvestor.Controllers
     [Route("ach")]
     public class AchievementsController
     {
-        private readonly IAchievementRepository ar = new AchievementRepository();
+        private readonly IAchievementService achievementService = new AchievementService();
 
         [HttpGet("achievements")]
-        public List<IAchievement> AllAchievements() => ar.All();
+        public List<IAchievement> AllAchievements() => achievementService.AllAchievements();
     }
 }

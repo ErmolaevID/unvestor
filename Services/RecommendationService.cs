@@ -1,16 +1,32 @@
 using System.Collections.Generic;
+using System.Linq;
+using unvestor.Infrastructure;
 using unvestor.Models;
 
 namespace unvestor.Services
 {
     public class RecommendationService : IRecommendationService
     {
-        private readonly IRecommendationSystem recommendationSystem = new RecommendationSystem();
-        private readonly ICompaniesService companiesService = new CompaniesService();
-        private readonly IPlayerService playerService = new PlayerService();
-        
-        public List<ICompany> Stocks() => recommendationSystem
-            .Stocks(playerService.PlayerInfo().Cash, companiesService.AllCompanies());
+        private readonly ICompanyRepository companyRepository;
+
+        public RecommendationService() : this(new CompanyRepository()) {}
+
+        public RecommendationService(ICompanyRepository companyRepository) =>
+            this.companyRepository = companyRepository;
+
+        public List<ICompany> Stocks(int cash)
+        {
+            var res = new List<ICompany>();
+            foreach (var company in companyRepository.All().OrderByDescending(company => company.StockPrice))
+            {
+                if (company.StockPrice > cash) 
+                    continue;
+                cash -= company.StockPrice;
+                res.Add(company);
+            }
+
+            return res;
+        }
         
     }
 }

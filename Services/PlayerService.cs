@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using unvestor.Infrastructure;
 using unvestor.Models;
 
@@ -6,31 +7,22 @@ namespace unvestor.Services
     public class PlayerService : IPlayerService
     {
         private IPlayerRepository repository;
-        private ICompaniesService companiesService;
+
+        public PlayerService() : this(new PlayerRepository()) {}
         
-        public PlayerService() : this(
-            new PlayerRepository(),
-            new CompaniesService()) {}
-        
-        public PlayerService(
-            IPlayerRepository repository,
-            ICompaniesService companiesService)
-        {
-            this.repository = repository;
-            this.companiesService = companiesService;
-        }
+        public PlayerService(IPlayerRepository repository) => this.repository = repository;
 
         public IInvestor PlayerInfo() => repository.Player();
 
-        public void Sell(string ticker, int count)
+        public void Sell(ICompany company, int count)
         {
-            PlayerInfo().SellStock(companiesService.CompanyByTicker(ticker), count);
+            PlayerInfo().SellStock(company, count);
             repository.Save();
         }
 
-        public void Buy(string ticker, int count)
+        public void Buy(ICompany company, int count)
         {
-            PlayerInfo().BuyStock(companiesService.CompanyByTicker(ticker), count);
+            PlayerInfo().BuyStock(company, count);
             repository.Save();
         }
     }

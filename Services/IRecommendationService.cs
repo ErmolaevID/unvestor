@@ -5,6 +5,6 @@ namespace unvestor.Services
 {
     public interface IRecommendationService
     {
-        List<ICompany> Stocks();
+        List<ICompany> Stocks(int cash);
     }
 }

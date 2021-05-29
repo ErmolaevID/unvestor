@@ -15,26 +15,38 @@ namespace unvestor.Controllers
         private readonly IPlayerService playerService = new PlayerService();
         private readonly ICompaniesService companiesService = new CompaniesService();
         private readonly IRecommendationService recommendationService = new RecommendationService();
+        private readonly IStockMarketService stockMarketService = new StockMarketService();
+        private readonly IAchievementService achievementService = new AchievementService();
 
         [HttpGet("companies")]
         public List<ICompany> AllCompanies() => companiesService.AllCompanies();
 
         [HttpPost("update")]
-        public void UpdateStockPrices() => World.Update();
+        public void UpdateStockPrices() => stockMarketService.Update();
 
         [HttpGet("{companyTicker}")]
         public ICompany CompanyByTicker(string companyTicker) => companiesService.CompanyByTicker(companyTicker);
 
         [HttpPost("buy")]
-        public void Buy(BuyStockDto req) => playerService.Buy(req.ticker, req.count);
+        public void Buy(BuyStockDto req)
+        {
+            playerService.Buy(
+                companiesService.CompanyByTicker(req.ticker), req.count);
+            achievementService.Check(new [] { 1, 3, 4, 5, 6 });
+        }
 
         [HttpPost("sell")]
-        public void Sell(SellStockDto req) => playerService.Sell(req.ticker, req.count);
+        public void Sell(SellStockDto req)
+        {
+            playerService.Sell(
+                companiesService.CompanyByTicker(req.ticker), req.count);
+            achievementService.Check(new [] { 2 });
+        }
 
         [HttpGet("player")]
         public IInvestor PlayerInfo() => playerService.PlayerInfo();
 
         [HttpGet("recommendations")]
-        public List<ICompany> Recommendations() =>  recommendationService.Stocks();
+        public List<ICompany> Recommendations() => recommendationService.Stocks(playerService.PlayerInfo().Cash);
     }
 }

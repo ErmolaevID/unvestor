@@ -6,7 +6,7 @@ namespace unvestor.Services
 {
     public class CompaniesService : ICompaniesService
     {
-        private ICompanyRepository repository;
+        private readonly ICompanyRepository repository;
 
         public CompaniesService() : this(new CompanyRepository()) {}
         
