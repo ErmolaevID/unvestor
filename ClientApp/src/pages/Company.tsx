@@ -17,6 +17,8 @@ import {
   Counter,
   CounterWrapper,
 } from "../styles/Company.styles";
+import { PlayerDto } from "../common/Player.dto";
+import { CompanyStockChart } from "../components/CompanyStockChart/CompanyStockChart";
 
 interface Props {
   handleAction: () => void;
@@ -33,13 +35,23 @@ export const Company: React.FC<Props> = ({ handleAction }) => {
   const [counter, setCounter] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [company, setCompany] = useState<CompanyDto>();
+  const [player, setPlayer] = useState<PlayerDto>();
   const { ticker } = useParams<{ ticker: string }>();
 
-  useEffect(() => {
+  const fetchCompanies = () =>
     req<null, CompanyDto>({
       url: routes.companyByTicker(ticker),
-    }).then((res) => {
-      setCompany(res);
+    });
+
+  const fetchPlayer = () =>
+    req<null, PlayerDto>({
+      url: routes.player,
+    });
+
+  useEffect(() => {
+    Promise.all([fetchCompanies(), fetchPlayer()]).then((values) => {
+      setCompany(values[0]);
+      setPlayer(values[1]);
       setLoading(false);
     });
   }, []);
@@ -69,33 +81,15 @@ export const Company: React.FC<Props> = ({ handleAction }) => {
   ) : (
     <Wrapper>
       <Toaster />
-      <CompanyTitle>{company?.title}</CompanyTitle>
+      <CompanyTitle>
+        {company?.title} (you have{" "}
+        {player?.portfolio.stocks[company?.ticker as string]?.length ?? 0}{" "}
+        stock)
+      </CompanyTitle>
       <CompanyTicker>{company?.ticker}</CompanyTicker>
       <Box>
         <Chart>
-          <AreaChart
-            width={950}
-            height={340}
-            data={company?.stockPriceHistory.map((el) => {
-              return { n: el };
-            })}
-          >
-            <defs>
-              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-              </linearGradient>
-            </defs>
-            <Area
-              type="monotone"
-              dataKey="n"
-              stroke="#8884d8"
-              fillOpacity={1}
-              fill="url(#colorUv)"
-            />
-            <YAxis />
-            <Tooltip />
-          </AreaChart>
+          <CompanyStockChart company={company as CompanyDto} />
         </Chart>
         <Buttons>
           <BuyButton
