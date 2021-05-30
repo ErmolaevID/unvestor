@@ -4,6 +4,7 @@ import { YAxis, Tooltip, Area, AreaChart } from "recharts";
 import { CompanyDto } from "../common/Company.dto";
 import { useAPIs } from "../hooks/apis.hook";
 import { useHttp } from "../hooks/http.hook";
+import toast, { Toaster } from "react-hot-toast";
 import {
   CompanyTitle,
   CompanyTicker,
@@ -17,7 +18,17 @@ import {
   CounterWrapper,
 } from "../styles/Company.styles";
 
-export const Company: React.FC = () => {
+interface Props {
+  handleAction: () => void;
+}
+
+const notify = (
+  companyTicker: string,
+  stockCount: number,
+  action: "bought" | "sold"
+) => toast.success(`You ${action} ${stockCount} stocks of ${companyTicker}`);
+
+export const Company: React.FC<Props> = ({ handleAction }) => {
   const [req, routes] = [useHttp(), useAPIs()];
   const [counter, setCounter] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
@@ -33,8 +44,12 @@ export const Company: React.FC = () => {
     });
   }, []);
 
-  const handleClick = (ticker: string, count: number, type: "buy" | "sell") => {
-    req({
+  const handleClick = async(
+    ticker: string,
+    count: number,
+    type: "buy" | "sell"
+  ) => {
+    await req({
       url: routes.sellOrBuyStocks(type),
       method: "POST",
       body: {
@@ -44,13 +59,16 @@ export const Company: React.FC = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => res);
+    });
+    notify(ticker, count, type === "buy" ? "bought" : "sold");
+    handleAction();
   };
 
   return loading ? (
     <>Loading</>
   ) : (
     <Wrapper>
+      <Toaster />
       <CompanyTitle>{company?.title}</CompanyTitle>
       <CompanyTicker>{company?.ticker}</CompanyTicker>
       <Box>
@@ -59,8 +77,7 @@ export const Company: React.FC = () => {
             width={950}
             height={340}
             data={company?.stockPriceHistory.map((el) => {
-              const k = { n: el };
-              return k;
+              return { n: el };
             })}
           >
             <defs>
