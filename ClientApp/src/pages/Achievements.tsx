@@ -17,9 +17,13 @@ export const Achievements: React.FC = () => {
 
   return (
     <Wrapper>
-      {data.map((el) => (
-        <Achievement data={el} />
-      ))}
+      <ul style={{ listStyleType: "none" }}>
+        {data.map((el) => (
+          <li>
+            <Achievement data={el} />
+          </li>
+        ))}
+      </ul>
     </Wrapper>
   );
 };
