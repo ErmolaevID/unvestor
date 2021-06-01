@@ -19,7 +19,7 @@ namespace unvestor.Infrastructure
             ParseDto(json.Content<List<AchievementDto>>("Achievements.json"));
         }
 
-        public List<IAchievement> All() => achievements;
+        public List<IAchievement> Content() => achievements;
 
         public void Save() =>
             json.Write(

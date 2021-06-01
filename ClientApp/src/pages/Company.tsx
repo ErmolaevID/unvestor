@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { YAxis, Tooltip, Area, AreaChart } from "recharts";
 import { CompanyDto } from "../common/Company.dto";
-import { useAPIs } from "../hooks/apis.hook";
-import { useHttp } from "../hooks/http.hook";
 import toast, { Toaster } from "react-hot-toast";
 import {
   CompanyTitle,
@@ -19,6 +16,8 @@ import {
 } from "../styles/Company.styles";
 import { PlayerDto } from "../common/Player.dto";
 import { CompanyStockChart } from "../components/CompanyStockChart/CompanyStockChart";
+import { Loader } from "../components/Loader/Loader";
+import { useTools } from "../hooks/tools.hook";
 
 interface Props {
   handleAction: () => void;
@@ -31,27 +30,29 @@ const notify = (
 ) => toast.success(`You ${action} ${stockCount} stocks of ${companyTicker}`);
 
 export const Company: React.FC<Props> = ({ handleAction }) => {
-  const [req, routes] = [useHttp(), useAPIs()];
+  const { req, api } = useTools();
   const [counter, setCounter] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [company, setCompany] = useState<CompanyDto>();
-  const [player, setPlayer] = useState<PlayerDto>();
+  const [player, setPlayer] = useState<number>();
   const { ticker } = useParams<{ ticker: string }>();
 
   const fetchCompanies = () =>
     req<null, CompanyDto>({
-      url: routes.companyByTicker(ticker),
+      url: api.companyByTicker(ticker),
     });
 
   const fetchPlayer = () =>
     req<null, PlayerDto>({
-      url: routes.player,
+      url: api.player,
     });
 
   useEffect(() => {
     Promise.all([fetchCompanies(), fetchPlayer()]).then((values) => {
       setCompany(values[0]);
-      setPlayer(values[1]);
+      setPlayer(
+        values[1].portfolio.stocks[values[0].ticker as string]?.length ?? 0
+      );
       setLoading(false);
     });
   }, []);
@@ -62,7 +63,7 @@ export const Company: React.FC<Props> = ({ handleAction }) => {
     type: "buy" | "sell"
   ) => {
     await req({
-      url: routes.sellOrBuyStocks(type),
+      url: api.sellOrBuyStocks(type),
       method: "POST",
       body: {
         ticker,
@@ -77,14 +78,12 @@ export const Company: React.FC<Props> = ({ handleAction }) => {
   };
 
   return loading ? (
-    <>Loading</>
+    <Loader />
   ) : (
     <Wrapper>
       <Toaster />
       <CompanyTitle>
-        {company?.title} (you have{" "}
-        {player?.portfolio.stocks[company?.ticker as string]?.length ?? 0}{" "}
-        stock)
+        {company?.title} (you have {player} stock)
       </CompanyTitle>
       <CompanyTicker>{company?.ticker}</CompanyTicker>
       <Box>

@@ -32,7 +32,7 @@ namespace unvestor.Services
         {
              foreach (var id in ids)
              {
-                 var achievement = achievementRepository.All().Find(ach => ach.Id == id);
+                 var achievement = achievementRepository.Content().Find(ach => ach.Id == id);
                  if (achievement == null)
                      throw new Exception();
                  if (achievement.IsDone)
@@ -46,7 +46,7 @@ namespace unvestor.Services
                          achievement.IsDone = true;
                          break;
                      case 3:
-                         foreach (var company in playerRepository.Player().Portfolio.Stocks)
+                         foreach (var company in playerRepository.Content().Portfolio.Stocks)
                          {
                              foreach (var stock in company.Value)
                              {
@@ -57,7 +57,7 @@ namespace unvestor.Services
                          }
                          break;
                      case 4:
-                         foreach (var company in playerRepository.Player().Portfolio.Stocks)
+                         foreach (var company in playerRepository.Content().Portfolio.Stocks)
                          {
                              foreach (var stock in company.Value)
                              {
@@ -68,11 +68,11 @@ namespace unvestor.Services
                          }
                          break;
                      case 5:
-                         if (playerRepository.Player().Portfolio.Stocks.Count == companyRepository.All().Count)
+                         if (playerRepository.Content().Portfolio.Stocks.Count == companyRepository.Content().Count)
                              achievement.IsDone = true;
                          break;
                      case 6:
-                         foreach (var company in playerRepository.Player().Portfolio.Stocks)
+                         foreach (var company in playerRepository.Content().Portfolio.Stocks)
                          {
                              foreach (var stock in company.Value)
                              {
@@ -82,11 +82,11 @@ namespace unvestor.Services
                          }
                          break;
                      case 7:
-                         foreach (var company in companyRepository.All())
+                         foreach (var company in companyRepository.Content())
                          {
                              if (!company.IsBankrupt)
                                  continue;
-                             if (playerRepository.Player().Portfolio.Stocks.ContainsKey(company.Ticker))
+                             if (playerRepository.Content().Portfolio.Stocks.ContainsKey(company.Ticker))
                                  achievement.IsDone = true;
                          }
                          break;
@@ -95,6 +95,6 @@ namespace unvestor.Services
              achievementRepository.Save();
         }
 
-        public List<IAchievement> AllAchievements() => achievementRepository.All();
+        public List<IAchievement> AllAchievements() => achievementRepository.Content();
     }
 }

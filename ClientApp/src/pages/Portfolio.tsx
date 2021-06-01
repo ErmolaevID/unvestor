@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CompanyDto } from "../common/Company.dto";
 import { PlayerDto } from "../common/Player.dto";
 import { CompanyList } from "../components/CompanyList/CompanyList";
-import { useAPIs } from "../hooks/apis.hook";
-import { useHttp } from "../hooks/http.hook";
+import { useTools } from "../hooks/tools.hook";
 import {
   InfoBox,
   InfoBoxElement,
@@ -13,43 +12,45 @@ import {
   Wrapper,
 } from "../styles/Portfolio.styles";
 
+type Data = [string, number, number][];
+
+const calcCurrentPrice = (res: Data) => {
+  let acc = 0;
+  res.map((e) => (acc += e[2]));
+  return acc;
+};
+
 export const Portfolio: React.FC = () => {
-  const [req, routes] = [useHttp(), useAPIs()];
+  const { req, api } = useTools();
   const [player, setPlayer] = useState<PlayerDto>();
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Data>([]);
   const [currentPrice, setCurrentPrice] = useState<number>();
 
   useEffect(() => {
     req<null, PlayerDto>({
-      url: routes.player,
+      url: api.player,
     }).then((res) => setPlayer(res));
   }, []);
 
   useEffect(() => {
-    fu();
+    fetchData();
   }, [player]);
 
-  const fu = async() => {
+  const fetchData = async() => {
     if (!player) {
       return;
     }
-    const res = [];
+    const res: Data = [];
     for (const ticker in player.portfolio.stocks) {
       let stockPrice = 0;
       await req<{ ticker: string }, CompanyDto>({
-        url: routes.companyByTicker(ticker),
+        url: api.companyByTicker(ticker),
       }).then((res) => (stockPrice = res.stockPrice));
       const count = player.portfolio.stocks[ticker].length;
       res.push([ticker, count, stockPrice * count]);
     }
     setData(res);
     setCurrentPrice(calcCurrentPrice(res));
-  };
-
-  const calcCurrentPrice = (res: any) => {
-    let acc = 0;
-    res.map((e: any) => (acc += e[2]));
-    return acc;
   };
 
   return (
@@ -69,7 +70,7 @@ export const Portfolio: React.FC = () => {
         </InfoBoxElement>
       </InfoBox>
       <StocksBox>
-        {data.map((e: any) => (
+        {data.map((e) => (
           <CompanyList left={e[0]} middle={e[1]} right={e[2]} />
         ))}
       </StocksBox>

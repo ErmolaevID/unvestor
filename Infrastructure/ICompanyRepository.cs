@@ -1,11 +1,10 @@
 using System.Collections.Generic;
+using unvestor.Models;
 
-namespace unvestor.Models
+namespace unvestor.Infrastructure
 {
-    public interface ICompanyRepository
+    public interface ICompanyRepository : IRepository<List<ICompany>>
     {
-        List<ICompany> All();
-        void Save();
         ICompany CompanyByTicker(string ticker);
     }
 }

@@ -15,7 +15,7 @@ namespace unvestor.Services
             this.repository = repository;
         }
 
-        public List<ICompany> AllCompanies() => repository.All();
+        public List<ICompany> AllCompanies() => repository.Content();
         
         public ICompany CompanyByTicker(string ticker) => repository.CompanyByTicker(ticker);
         

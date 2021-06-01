@@ -26,12 +26,12 @@ namespace unvestor.Services
 
         public void Update()
         {
-            foreach (var company in companyRepository.All())
+            foreach (var company in companyRepository.Content())
             {
                 company.UpdateStockPrice();
                 if (company.IsBankrupt)
                 {
-                    var player = playerRepository.Player();
+                    var player = playerRepository.Content();
                     achievementService.Check(new [] { 7 });
                     player.Portfolio.Stocks.Remove(company.Ticker);
                     playerRepository.Save();

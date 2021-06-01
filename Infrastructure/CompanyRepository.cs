@@ -19,7 +19,7 @@ namespace unvestor.Infrastructure
             ParseDto(json.Content<List<CompanyDto>>("Companies.json"));
         }
 
-        public List<ICompany> All() => list;
+        public List<ICompany> Content() => list;
 
         public void Save() =>
             json.Write(

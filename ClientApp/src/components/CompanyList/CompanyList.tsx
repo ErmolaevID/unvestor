@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 import { Wrapper } from "./CompanyList.styles";
 
 export interface Props {
-  left: string;
-  middle: number;
-  right: string;
+  left: string | number;
+  middle: string | number;
+  right: string | number;
   link?: string;
 }
 

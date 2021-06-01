@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using unvestor.Models;
 
-namespace unvestor.Models
+namespace unvestor.Infrastructure
 {
-    public interface IAchievementRepository
+    public interface IAchievementRepository : IRepository<List<IAchievement>>
     {
-        List<IAchievement> All();
-        void Save();
+        
     }
 }

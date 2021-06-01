@@ -12,7 +12,7 @@ namespace unvestor.Services
         
         public PlayerService(IPlayerRepository repository) => this.repository = repository;
 
-        public IInvestor PlayerInfo() => repository.Player();
+        public IInvestor PlayerInfo() => repository.Content();
 
         public void Sell(ICompany company, int count)
         {

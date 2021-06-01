@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useHttp } from "../hooks/http.hook";
 import { StockChartCard } from "../components/StocksChartCard/StocksChartCard";
 import { CompanyDto } from "../common/Company.dto";
 import { Wrapper } from "../styles/Dashboard.styles";
-import { useAPIs } from "../hooks/apis.hook";
+import { useTools } from "../hooks/tools.hook";
 
 export const Dashboard: React.FC = () => {
-  const [req, routes] = [useHttp(), useAPIs()];
+  const { req, api } = useTools();
   const [data, setData] = useState<CompanyDto[]>([]);
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
     req<null, CompanyDto[]>({
-      url: routes.allCompanies,
-      method: "GET",
+      url: api.allCompanies,
     }).then((e) => setData(e));
   }, [tick]);
 
@@ -21,7 +19,7 @@ export const Dashboard: React.FC = () => {
     setInterval(() => {
       if (window.location.pathname === "/dashboard") {
         req({
-          url: routes.updateStockMarket,
+          url: api.updateStockMarket,
           method: "POST",
         });
         setTick((prev) => ++prev);

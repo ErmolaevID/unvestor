@@ -17,7 +17,7 @@ namespace unvestor.Services
         public List<ICompany> Stocks(int cash)
         {
             var res = new List<ICompany>();
-            foreach (var company in companyRepository.All().OrderByDescending(company => company.StockPrice))
+            foreach (var company in companyRepository.Content().OrderByDescending(company => company.StockPrice))
             {
                 if (company.StockPrice > cash) 
                     continue;
