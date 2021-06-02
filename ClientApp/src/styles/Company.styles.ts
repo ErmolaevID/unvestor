@@ -40,6 +40,7 @@ export const Chart = styled.div`
 `;
 
 export const Buttons = styled.div`
+  display: flex;
   height: calc(134vh * ${hHD});
 `;
 
@@ -60,6 +61,9 @@ export const SellButton = styled(BuyButton)`
 
 export const CounterWrapper = styled.button`
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: calc(198vw * ${wHD});
   background-color: #EBEBEB;
   border: 0;
@@ -69,4 +73,5 @@ export const Counter = styled.div`
   font-size: 30px;
   font-weight: 500;
   color: #000000;
+  padding: 0px 40px;
 `;

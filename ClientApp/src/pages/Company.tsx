@@ -18,6 +18,7 @@ import { PlayerDto } from "../common/Player.dto";
 import { CompanyStockChart } from "../components/CompanyStockChart/CompanyStockChart";
 import { Loader } from "../components/Loader/Loader";
 import { useTools } from "../hooks/tools.hook";
+import { Arrow } from "../components/Arrow/Arrow";
 
 interface Props {
   handleAction: () => void;
@@ -77,6 +78,15 @@ export const Company: React.FC<Props> = ({ handleAction }) => {
     handleAction();
   };
 
+  const handleCounterClick = (up: boolean) => {
+    debugger;
+    if (!up) {
+      setCounter((prev) => prev = prev > 0 ? --prev : 0);
+      return;
+    }
+    setCounter((prev) => ++prev);
+  };
+
   return loading ? (
     <Loader />
   ) : (
@@ -105,8 +115,10 @@ export const Company: React.FC<Props> = ({ handleAction }) => {
           >
             Sell
           </SellButton>
-          <CounterWrapper onClick={() => setCounter((prev) => ++prev)}>
+          <CounterWrapper>
+            <Arrow direction="left" clickHandler={() => handleCounterClick(false)} />
             <Counter>{counter}</Counter>
+            <Arrow direction="right" clickHandler={() => handleCounterClick(true)} />
           </CounterWrapper>
         </Buttons>
       </Box>
