@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route } from "react-router";
+import { Route, Redirect } from "react-router";
 import { PlayerDto } from "./common/Player.dto";
 import { Navabar } from "./components/Navbar/Navbar";
 import { useTools } from "./hooks/tools.hook";
@@ -38,6 +38,7 @@ export const App: React.FC = () => {
         path={routes.recommendations()}
         component={Recommendations}
       />
+      <Redirect from="/" to="/dashboard" />
     </Navabar>
   );
 };
