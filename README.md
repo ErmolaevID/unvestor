@@ -1,3 +1,6 @@
+для запуска нужен [node js LTS](https://nodejs.org/en/) <br/>
+view живет на [https://localhost:5001/](https://localhost:5001/)
+
 ### 1 встреча
 - [x] Связать вьюху и бэкенд
 - [x] Добавить логику и отрисовку графиков
