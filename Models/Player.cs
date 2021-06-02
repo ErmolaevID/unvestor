@@ -37,6 +37,8 @@ namespace unvestor.Models
             if (Portfolio.Stocks[company.Ticker].Count < count)
                 throw new Exception("Not enough stocks");
             Portfolio.Stocks[company.Ticker].RemoveRange(0, count);
+            if (Portfolio.Stocks[company.Ticker].Count == 0)
+                Portfolio.Stocks.Remove(company.Ticker);
             var currentPrice = company.StockPrice;
             Cash += currentPrice * count;
         }
